@@ -1,5 +1,5 @@
 import type { Plugin } from 'vite';
-import { vite } from '@storybook/csf-plugin';
+import CsfVitePlugin from '@storybook/csf-plugin/vite';
 import type { StorybookConfig, Options } from '@storybook/types';
 
 export async function csfPlugin(config: Options): Promise<Plugin> {
@@ -10,6 +10,5 @@ export async function csfPlugin(config: Options): Promise<Plugin> {
     // @ts-expect-error - not sure what type to use here
     addons.find((a) => [a, a.name].includes('@storybook/addon-docs'))?.options ?? {};
 
-  // TODO: looks like unplugin can return an array of plugins
-  return vite(docsOptions?.csfPluginOptions) as Plugin;
+  return CsfVitePlugin(docsOptions?.csfPluginOptions) as Plugin;
 }
